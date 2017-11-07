@@ -1,0 +1,9 @@
+/dist
+/tmp
+/out-tsc
+/node_modules
+/.idea
+/.sass-cache
+/e2e/*.js
+/e2e/*.map
+
