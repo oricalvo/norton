@@ -1,10 +1,16 @@
 import * as cli from "build-utils/cli";
-import {spawn} from "build-utils/process";
+import {exec, spawn} from "build-utils/process";
+import {enableLogging} from "build-utils/logger";
+
+enableLogging();
 
 cli.command("dev", dev);
 
 cli.run();
 
-function dev(){
-  spawn("./node_modules/bin/tsc -p ./server/tsconfig.json")
+async function dev(){
+  await exec("./node_modules/.bin/tsc -p ./server/tsconfig.json");
+  exec("./node_modules/.bin/tsc -p ./server/tsconfig.json -w");
+
+  exec("./node_modules/.bin/nodemon ./server-out/main.js");
 }
