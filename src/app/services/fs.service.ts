@@ -1,15 +1,13 @@
-import {AppStore} from "../store/appStore";
 import {Injectable} from "@angular/core";
-import {AppState, Explorer, ExplorerItem} from "../store/appState";
+import {ExplorerItem} from "../store/appState";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable()
 export class FSService {
-  constructor(){
+  constructor(private http: HttpClient){
   }
 
   getItems(path: string): Promise<ExplorerItem[]> {
-    return Promise.resolve([
-      {name: "1", type: "file"},
-    ])
+    return this.http.get<ExplorerItem[]>("/api/items/" + path).toPromise();
   }
 }

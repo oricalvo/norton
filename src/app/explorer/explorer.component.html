@@ -1,7 +1,7 @@
 <div class="path">{{explorer.path}}</div>
 
 <ul>
-  <li *ngFor="let item of explorer.items">
+  <li *ngFor="let item of explorer.items" (dblclick)="onActivate(item)">
     <span>{{item.name}}</span>
   </li>
 </ul>
