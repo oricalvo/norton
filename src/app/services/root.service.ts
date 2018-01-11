@@ -2,6 +2,7 @@ import {AppStore} from "../store/appStore";
 import {Injectable} from "@angular/core";
 import {AppState, Explorer, ExplorerItem} from "../store/appState";
 import {FSService} from "./fs.service";
+import {replace, update} from '../store/store';
 
 @Injectable()
 export class RootService {
@@ -27,7 +28,7 @@ export class RootService {
 
   async changedir(explorer: Explorer, item: ExplorerItem) {
     this.appStore.update({
-      explorers: UPDATE(explorer, await this.getExplorer(explorer.path));
+      explorers: replace(explorer, await this.getExplorer(explorer.path)),
     });
   }
 }
